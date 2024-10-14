@@ -1,38 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import captions from './captions.json'; // Importa o arquivo JSON
-
+// ImageGallery.js
+import React, { useState } from "react";
+import captions from "./captions.json";
+import imageUrls from "./imgUrls.js";
 
 const ImageGallery = () => {
   const [selected, setSelected] = useState(null);
-  const COUNT = 71;
 
   const handleExpansion = (index) => {
-    if (selected === index) {
-      setSelected(null);
-    } else {
-      setSelected(index);
-    }
+    setSelected(selected === index ? null : index);
   };
 
   return (
     <ul className="grid">
-      {Array.from({ length: COUNT }, (_, index) => (
+      {imageUrls.map((url, index) => (
         <li
           key={index}
-          className={`gallery-item ${selected === index ? 'full' : ''}`}
+          className={`gallery-item ${selected === index ? "full" : ""}`}
           onClick={() => handleExpansion(index)}
         >
           <button>
             <img
-              src={`http://localhost/adventure-of-my-lifetime/imagens/IMG_${index + 1}.JPG`}  // Substitua pelo caminho correto da imagem
-              alt={`Image ${index + 1}`}
+              src={`${url}?q_auto,f_auto`}
+              alt={`Imagem ${index + 1}`}
+              loading="lazy"
             />
           </button>
-          {selected === index && (
+          {selected === index && captions[index] && (
             <div className="caption-container">
-              <div className="caption">
-                {captions[index]}
-              </div>
+              <div className="caption">{captions[index]}</div>
             </div>
           )}
         </li>

@@ -1,16 +1,14 @@
-import React from 'react';
-import ImageGallery from '../../adventure-of-my-lifetime/src/components/ImageGallery';
+import React from "react";
+import ImageGallery from "./components/ImageGallery";
+import "./styles/style.css";
 
-const App = () => {
-    return ( <
-        div >
-
-        <
-        ImageGallery / >
-
-        <
-        /div>
-    );
-};
+function App() {
+  return (
+    <div className="App">
+      <h1 className="page-title"> Adventure of My Lifetime </h1>{" "}
+      <ImageGallery />
+    </div>
+  );
+}
 
 export default App;
